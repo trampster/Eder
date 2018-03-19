@@ -1,0 +1,14 @@
+@{
+    ViewData["Title"] = "Index";
+}
+<br />
+<div style="float: right"><button type="button" onclick="location.href='/Members/New';" class="btn btn-primary">+</button></div>
+<br />
+<br />
+
+<div class="list-group">
+@foreach(var member in @Model)
+{
+    <a href="/Members/Edit/@member.Id" class="list-group-item">@member.FirstName @member.LastName</a>
+}
+</div>
