@@ -2,13 +2,40 @@
     ViewData["Title"] = "Index";
 }
 <br />
-<div style="float: right"><button type="button" onclick="location.href='/Members/New';" class="btn btn-primary">+</button></div>
+
+<div style="float: right">
+  <button id="deleteButton" style="visibility: hidden" type="button" onclick="location.href='/Members/New';" class="btn btn-primary">x</button>
+  <button type="button" onclick="location.href='/Members/New';" class="btn btn-primary">+</button>
+</div>
 <br />
 <br />
 
 <div class="list-group">
 @foreach(var member in @Model)
 {
-    <a href="/Members/Edit/@member.Id" class="list-group-item">@member.FirstName @member.LastName</a>
+    <a href="/Members/Edit/@member.Id" class="list-group-item"><input type="checkbox" onchange="myFunction()"> @member.FirstName @member.LastName</a>
 }
 </div>
+
+<script>
+function myFunction() 
+{
+    var anySet = false;
+    var inputs = document.getElementsByTagName("input");
+    for(var i = 0; i < inputs.length; i++) 
+    {
+        if(inputs[i].type == "checkbox" && inputs[i].checked == true) 
+        {
+            anySet = true; 
+        }
+    }
+    if(anySet) 
+    {
+        document.getElementById("deleteButton").style.visibility = 'visible';
+    }
+    else
+    {
+        document.getElementById("deleteButton").style.visibility = 'hidden';
+    }
+}
+</script>
